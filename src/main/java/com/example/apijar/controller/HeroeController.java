@@ -21,7 +21,7 @@ public class HeroeController {
     public ResponseEntity<List<Heroe>> getAll() throws JsonProcessingException {
         return new ResponseEntity<>(heroeService.getHeroes(), HttpStatus.OK);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/herooe/{id}")
     public ResponseEntity<Heroe> getHeroe(@PathVariable("id") Integer id) throws JsonProcessingException {
             return new ResponseEntity<>(heroeService.getHeroe(id), HttpStatus.OK);
     }*/
