@@ -1,4 +1,4 @@
-package com.example.apijar.model.dto;
+package org.example.apijar.model.dto;
 
 public class Thumbnail {
     public String path;

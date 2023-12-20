@@ -1,23 +1,24 @@
-package com.example.apijar.model.services;
+package org.example.apijar.model.services;
 
-import com.example.apijar.model.dto.Heroe;
-import com.example.apijar.model.interfaces.IHeroe;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.apijar.model.interfaces.IHeroe;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.example.apijar.model.dto.Heroe;
 
 import java.util.Arrays;
 import java.util.List;
+
 @Service
 public class HeroeServiceImpl implements IHeroe {
-    @Autowired
+
     private RestTemplate restTemplate;
 
     public HeroeServiceImpl() {
+        this.restTemplate= new RestTemplate();
     }
 
 

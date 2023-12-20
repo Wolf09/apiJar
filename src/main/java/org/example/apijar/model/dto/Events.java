@@ -1,8 +1,8 @@
-package com.example.apijar.model.dto;
+package org.example.apijar.model.dto;
 
 import java.util.ArrayList;
 
-public class Series {
+public class Events {
     public int available;
     public String collectionURI;
     public ArrayList<Item> items;

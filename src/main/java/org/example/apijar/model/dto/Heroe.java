@@ -1,4 +1,4 @@
-package com.example.apijar.model.dto;
+package org.example.apijar.model.dto;
 
 import java.util.ArrayList;
 import java.util.Date;

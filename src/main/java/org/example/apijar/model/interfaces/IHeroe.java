@@ -1,7 +1,6 @@
-package com.example.apijar.model.interfaces;
-
-import com.example.apijar.model.dto.Heroe;
+package org.example.apijar.model.interfaces;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import org.example.apijar.model.dto.Heroe;
 
 import java.util.List;
 
