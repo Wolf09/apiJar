@@ -8,6 +8,16 @@ public class Comics {
     public ArrayList<Item> items;
     public int returned;
 
+    public Comics() {
+    }
+
+    public Comics(int available, String collectionURI, ArrayList<Item> items, int returned) {
+        this.available = available;
+        this.collectionURI = collectionURI;
+        this.items = items;
+        this.returned = returned;
+    }
+
     public int getAvailable() {
         return available;
     }

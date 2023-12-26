@@ -16,6 +16,23 @@ public class Heroe {
     public Events events;
     public ArrayList<Url> urls;
 
+    public Heroe() {
+    }
+
+    public Heroe(int id, String name, String description, Date modified, Thumbnail thumbnail, String resourceURI, Comics comics, Series series, Stories stories, Events events, ArrayList<Url> urls) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.modified = modified;
+        this.thumbnail = thumbnail;
+        this.resourceURI = resourceURI;
+        this.comics = comics;
+        this.series = series;
+        this.stories = stories;
+        this.events = events;
+        this.urls = urls;
+    }
+
     public int getId() {
         return id;
     }

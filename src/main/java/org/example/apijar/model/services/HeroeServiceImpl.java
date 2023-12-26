@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.example.apijar.model.dto.Heroe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,25 +25,39 @@ public class HeroeServiceImpl implements IHeroe {
 
 
     @Override
-    public List<Heroe> getHeroes() throws JsonProcessingException {
+    public List<Heroe> getHeroes() {
+        List<Heroe> heroeList = new ArrayList<>(0);
+        try {
+            ResponseEntity<String> responseEntity=restTemplate.getForEntity("https://gateway.marvel.com:443/v1/public/characters?apikey=f2d24302a91eb25d672fd1967f9e52d4&ts=Wed Nov 29 2023 16:09:36 GMT-0400 (hora de Bolivia)&hash=5c1d3d1e5c7bab1759046dee46cd850b",String.class);
 
-        ResponseEntity<String> responseEntity=restTemplate.getForEntity("https://gateway.marvel.com:443/v1/public/characters?apikey=f2d24302a91eb25d672fd1967f9e52d4&ts=Wed Nov 29 2023 16:09:36 GMT-0400 (hora de Bolivia)&hash=5c1d3d1e5c7bab1759046dee46cd850b",String.class);
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode properties = objectMapper.readTree(responseEntity.getBody()).get("data");
+            JsonNode periods = properties.get("results");
+            Heroe[] response= objectMapper.readValue(periods.toString(), Heroe[].class);
+            heroeList=Arrays.asList(response);
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode properties = objectMapper.readTree(responseEntity.getBody()).get("data");
-        JsonNode periods = properties.get("results");
-        Heroe[] response= objectMapper.readValue(periods.toString(), Heroe[].class);
-        return Arrays.asList(response);
+        return heroeList;
     }
 
     @Override
-    public Heroe getHeroe(int id) throws JsonProcessingException {
-        ResponseEntity<String> responseEntity=restTemplate.getForEntity("https://gateway.marvel.com:443/v1/public/characters/"+id+"?apikey=f2d24302a91eb25d672fd1967f9e52d4&ts=Wed Nov 29 2023 16:09:36 GMT-0400 (hora de Bolivia)&hash=5c1d3d1e5c7bab1759046dee46cd850b",String.class);
+    public Heroe getHeroe(int id){
+        Heroe her=null;
+        try{
+            ResponseEntity<String> responseEntity=restTemplate.getForEntity("https://gateway.marvel.com:443/v1/public/characters/"+id+"?apikey=f2d24302a91eb25d672fd1967f9e52d4&ts=Wed Nov 29 2023 16:09:36 GMT-0400 (hora de Bolivia)&hash=5c1d3d1e5c7bab1759046dee46cd850b",String.class);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode properties = objectMapper.readTree(responseEntity.getBody()).get("data");
-        JsonNode periods = properties.get("results");
-        Heroe[] response= objectMapper.readValue(periods.toString(), Heroe[].class);
-        return response[0];
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode properties = objectMapper.readTree(responseEntity.getBody()).get("data");
+            JsonNode periods = properties.get("results");
+            Heroe[] response= objectMapper.readValue(periods.toString(), Heroe[].class);
+            her= response[0];
+
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return her;
+
     }
 }

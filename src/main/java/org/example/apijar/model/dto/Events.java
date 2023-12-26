@@ -8,6 +8,16 @@ public class Events {
     public ArrayList<Item> items;
     public int returned;
 
+    public Events() {
+    }
+
+    public Events(int available, String collectionURI, ArrayList<Item> items, int returned) {
+        this.available = available;
+        this.collectionURI = collectionURI;
+        this.items = items;
+        this.returned = returned;
+    }
+
     public int getAvailable() {
         return available;
     }

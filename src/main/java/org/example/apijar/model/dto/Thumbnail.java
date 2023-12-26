@@ -4,6 +4,14 @@ public class Thumbnail {
     public String path;
     public String extension;
 
+    public Thumbnail() {
+    }
+
+    public Thumbnail(String path, String extension) {
+        this.path = path;
+        this.extension = extension;
+    }
+
     public String getPath() {
         return path;
     }
